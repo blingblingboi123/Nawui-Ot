@@ -20,11 +20,5 @@ router.get("/user-orders/:userId", isAuthenticated, isAdmin, getUserOrders);
 router.get("/all", isAuthenticated, isAdmin, getAllOrders);
 router.put("/update-status/:orderId", isAuthenticated, isAdmin, updateOrderStatus);
 router.get("/sales-data", isAuthenticated, isAdmin, getSalesData);
-router.get("/test", (req, res) => {
-  res.json({ success: true, message: "Order route working" });
-});
-app.get("/api/health", (req, res) => {
-  res.json({ success: true });
-});
 
 export default router;
