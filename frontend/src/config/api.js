@@ -1,7 +1,13 @@
-export const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
-export const API_URL = `${API_BASE_URL}/api/v1`;
+import axios from "axios";
 
-export const authHeaders = () => {
-  const token = localStorage.getItem("accessToken");
-  return token ? { Authorization: `Bearer ${token}` } : {};
-};
+const BASE_URL =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:5000"
+    : "";
+
+const api = axios.create({
+  baseURL: import.meta.env.VITE_BACKEND_URL || BASE_URL,
+  withCredentials: true,
+});
+
+export default api;
