@@ -8,8 +8,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/ui/card";
-import { Input } from "@/components/ui/ui/input";
-import { Label } from "@/components/ui/ui/label";
+import { Input } from "@/components/ui/ui/Input";
+import { Label } from "@/components/ui/ui/Label";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
