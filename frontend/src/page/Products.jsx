@@ -1,7 +1,7 @@
 import FilterSideBar from "@/components/ui/ui/FilterSideBar";
 import ProductCard from "@/components/ui/ui/ProductCard";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "@/config/api";
 import { API_URL } from "@/config/api";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
@@ -22,7 +22,7 @@ const Products = () => {
     setLoading(true);
 
     try {
-      const response = await axios.get(`${API_URL}/product/getallproducts`);
+      const response = await api.get(`${API_URL}/product/getallproducts`);
 
       if (response.data.success) {
         setAllProducts(response.data.products || []);

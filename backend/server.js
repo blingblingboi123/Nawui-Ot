@@ -26,6 +26,9 @@ app.get("/api/health", (req, res) => {
     message: "Backend working",
   });
 });
+app.get("/api/test", (req, res) => {
+  res.json({ success: true, message: "API is working" });
+});
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/product", productRoute);
