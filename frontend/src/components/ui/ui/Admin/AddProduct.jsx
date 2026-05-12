@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { API_URL } from "@/config/api";
+import api from "@/config/api";
 import { toast } from "sonner";
 
 const AddProduct = () => {
@@ -80,8 +79,8 @@ const AddProduct = () => {
         data.append("files", file);
       });
 
-      const res = await axios.post(
-        `${API_URL}/product/addproduct`,
+      const res = await api.post(
+        "/api/v1/product/addproduct",
         data,
         {
           headers: {
