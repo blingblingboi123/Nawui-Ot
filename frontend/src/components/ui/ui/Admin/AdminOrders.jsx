@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "@/config/api";
 import { toast } from "sonner";
-import { API_URL, authHeaders } from "@/config/api";
+import { authHeaders } from "@/config/api";
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -10,7 +10,7 @@ const AdminOrders = () => {
   const getAllOrders = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${API_URL}/order/all`, { headers: authHeaders() });
+      const res = await api.get("/api/v1/order/all", { headers: authHeaders() });
       if (res.data.success) setOrders(res.data.orders || []);
     } catch (error) {
       console.log(error);
@@ -23,7 +23,7 @@ const AdminOrders = () => {
   const updateOrderStatus = async (orderId, status) => {
     try {
       const res = await axios.put(
-        `${API_URL}/order/update-status/${orderId}`,
+        `/api/v1/order/update-status/${orderId}`,
         { status },
         { headers: authHeaders() }
       );
