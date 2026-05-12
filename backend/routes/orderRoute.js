@@ -23,5 +23,8 @@ router.get("/sales-data", isAuthenticated, isAdmin, getSalesData);
 router.get("/test", (req, res) => {
   res.json({ success: true, message: "Order route working" });
 });
+app.get("/api/health", (req, res) => {
+  res.json({ success: true });
+});
 
 export default router;
