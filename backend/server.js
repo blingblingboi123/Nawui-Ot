@@ -14,6 +14,18 @@ const __dirname = path.resolve();
 
 app.use(express.json());
 
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
+
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/product", productRoute);
+app.use("/api/v1/cart", cartRoute);
+app.use("/api/v1/order", orderRoute);
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
@@ -22,23 +34,6 @@ if (process.env.NODE_ENV === "production") {
       path.join(__dirname, "../frontend/dist/index.html")
     );
   });
-}
-
-app.get("/", (req, res) => {
-  res.send("Backend is running");
-});
-
-app.use("/api/v1/user", userRoute);
-app.use("/api/v1/product", productRoute);
-app.use("/api/v1/cart", cartRoute);
-app.use("/api/v1/order", orderRoute);
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "frontend/dist")));
-
- app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
-});
 }
 
 app.listen(PORT, () => {
