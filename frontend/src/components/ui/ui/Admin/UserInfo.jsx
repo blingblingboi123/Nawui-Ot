@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import api from "@/config/api";
 import { API_URL } from "@/config/api";
 import { toast } from "sonner";
 import {
@@ -40,7 +40,7 @@ const UserInfo = () => {
     try {
       setLoading(true);
 
-      const res = await axios.get(
+      const res = await api.get(
         `${API_URL}/user/get-User/${id}`,
         {
           headers: {
@@ -87,7 +87,7 @@ const UserInfo = () => {
     try {
       setLoading(true);
 
-      const res = await axios.put(
+      const res = await api.put(
         `${API_URL}/user/update/${id}`,
         updatedUser,
         {
