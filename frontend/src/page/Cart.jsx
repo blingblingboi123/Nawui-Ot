@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import api from "@/config/api";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import { setCart } from "@/redux/cartSlice";
@@ -16,7 +16,7 @@ const Cart = () => {
     if (!productId) return;
 
     try {
-      const res = await axios.put(
+      const res = await api.put(
         `${API_URL}/cart/update`,
         { productId, type },
         { headers: authHeaders() }

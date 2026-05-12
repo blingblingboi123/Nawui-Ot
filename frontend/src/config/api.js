@@ -16,7 +16,7 @@ export const authHeaders = () => {
 };
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL || API_URL,
+  baseURL: API_URL,
   withCredentials: true,
 });
 
