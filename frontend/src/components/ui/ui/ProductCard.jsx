@@ -1,7 +1,7 @@
 import React from "react";
 import { ShoppingCart } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
-import axios from "axios";
+import api from "@/config/api";
 import { API_URL } from "@/config/api";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
@@ -34,8 +34,8 @@ const ProductCard = ({ product, loading }) => {
         return;
       }
 
-      const res = await axios.post(
-        `${API_URL}/cart/add`,
+      const res = await api.post(
+        `/api/v1/cart/add`,
         { productId },
         {
           headers: {
