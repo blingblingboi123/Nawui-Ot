@@ -7,7 +7,6 @@ export const API_URL =
 
 export const authHeaders = () => {
   const token = localStorage.getItem("accessToken");
-
   return {
     headers: {
       Authorization: `Bearer ${token}`,
