@@ -10,7 +10,7 @@ const AdminOrders = () => {
   const getAllOrders = async () => {
     try {
       setLoading(true);
-      const res = await api.get("/api/v1/order/all", { headers: authHeaders() });
+      const res = await api.get("/api/v1/order/all",authHeaders());
       if (res.data.success) setOrders(res.data.orders || []);
     } catch (error) {
       console.log(error);

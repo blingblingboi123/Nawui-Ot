@@ -32,7 +32,7 @@ const Navbar = () => {
   const dropdownRef = useRef(null);
 
   // unique item count
-  const cartCount = cart?.items?.length || 0;
+  const cartCount = cart?.items?.reduce((acc, item) => acc + item.quantity, 0) || 0;
 
   const isAdmin = user?.role === "admin";
 
