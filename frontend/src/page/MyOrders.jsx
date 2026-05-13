@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "@/config/api";
 import { Package, ShoppingBag, Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import { API_URL, authHeaders } from "@/config/api";
+import { authHeaders } from "@/config/api";
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -12,7 +12,7 @@ const MyOrders = () => {
     try {
       setLoading(true);
 
-      const res = await axios.get(`${API_URL}/order/my-orders`, {
+      const res = await api.get("/api/v1/order/my-orders", {
         headers: authHeaders(),
       });
 

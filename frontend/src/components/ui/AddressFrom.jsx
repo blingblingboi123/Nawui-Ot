@@ -4,10 +4,10 @@ import { Label } from "./ui/Label";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "@/config/api";
 import { toast } from "sonner";
 import { clearCart } from "@/redux/cartSlice";
-import { API_URL, authHeaders } from "@/config/api";
+import { authHeaders } from "@/config/api";
 
 const getStoredUser = () => {
   try {
@@ -146,8 +146,8 @@ const AddressForm = () => {
 
       const selectedAddress = addresses[selectedAddressIndex];
 
-      const { data } = await axios.post(
-        `${API_URL}/order/create-order`,
+      const { data } = await api.post(
+        "/api/v1/order/create-order",
         {
           products: cartItems.map((item) => ({
             productId: item.productId?._id || item.productId,
@@ -175,8 +175,8 @@ const AddressForm = () => {
 
         handler: async function (response) {
           try {
-            const verifyRes = await axios.post(
-              `${API_URL}/order/verify-payment`,
+            const verifyRes = await api.post(
+              "/api/v1/order/verify-payment",
               response,
               {
                 headers: authHeaders(),

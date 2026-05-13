@@ -36,7 +36,7 @@ const Cart = () => {
     if (!productId) return;
 
     try {
-      const res = await axios.delete(`${API_URL}/cart/remove`, {
+      const res = await api.delete(`${API_URL}/cart/remove`, {
         data: { productId },
         headers: authHeaders(),
       });

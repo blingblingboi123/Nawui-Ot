@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "@/config/api";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { setUser } from "../redux/userSlice";
-import { API_URL } from "@/config/api";
 
 const Profile = () => {
   const { user } = useSelector((store) => store.user);
@@ -75,8 +74,8 @@ const Profile = () => {
     try {
       setLoading(true);
 
-      const res = await axios.put(
-        `${API_URL}/user/update/${realUserId}`,
+      const res = await api.put(
+        `/api/v1/user/update/${realUserId}`,
         {
           firstName: updatedUser.firstName,
           lastName: updatedUser.lastName,

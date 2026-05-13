@@ -15,9 +15,8 @@ import { toast } from "sonner";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../../redux/userSlice";
 import { clearCart } from "@/redux/cartSlice";
-import axios from "axios";
+import api from "@/config/api";
 import Account from "../../page/Account";
-import { API_URL } from "@/config/api";
 
 const Navbar = () => {
   const { user } = useSelector((store) => store.user);
@@ -62,8 +61,8 @@ const Navbar = () => {
     const accessToken = localStorage.getItem("accessToken");
 
     try {
-      const res = await axios.post(
-        `${API_URL}/user/logout`,
+      const res = await api.post(
+        "/api/v1/user/logout",
         {},
         {
           headers: {

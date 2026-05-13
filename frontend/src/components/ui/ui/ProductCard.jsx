@@ -2,7 +2,6 @@ import React from "react";
 import { ShoppingCart } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import api from "@/config/api";
-import { API_URL } from "@/config/api";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";

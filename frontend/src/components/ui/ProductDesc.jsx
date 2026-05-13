@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ShoppingCart, Plus, Minus } from "lucide-react";
 import { toast } from "sonner";
-import axios from "axios";
+import api from "@/config/api";
 import { API_URL } from "@/config/api";
 import { useDispatch } from "react-redux";
 import { setCart } from "@/redux/cartSlice";
@@ -33,7 +33,7 @@ const ProductDesc = ({ product }) => {
         return;
       }
 
-      const res = await axios.post(
+      const res = await api.post(
         `${API_URL}/cart/add`,
         {
           productId: product._id,
