@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { API_URL } from "@/config/api";
+import api from "@/config/api";
 import { toast } from "sonner";
 import { Trash2, Edit, X } from "lucide-react";
 
@@ -27,8 +26,8 @@ const AdminProducts = () => {
     try {
       setLoading(true);
 
-      const res = await axios.get(
-        `${API_URL}/product/getallproducts`
+      const res = await api.get(
+        "/api/v1/product/getallproducts"  
       );
 
       if (res.data.success) {
@@ -50,8 +49,8 @@ const AdminProducts = () => {
     if (!confirmDelete) return;
 
     try {
-      const res = await axios.delete(
-        `${API_URL}/product/delete/${productId}`,
+      const res = await api.delete(
+        `/api/v1/product/delete/${productId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -151,8 +150,8 @@ const AdminProducts = () => {
         data.append("files", file);
       });
 
-      const res = await axios.put(
-        `${API_URL}/product/update/${editProductId}`,
+      const res = await api.put(
+        `/api/v1/product/update/${editProductId}`,
         data,
         {
           headers: {
