@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "@/config/api";
 import {
   ShoppingBag,
   IndianRupee,
@@ -7,7 +7,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { toast } from "sonner";
-import { API_URL, authHeaders } from "@/config/api";
+import { authHeaders } from "@/config/api";
 import {
   BarChart,
   Bar,
@@ -26,7 +26,7 @@ const AdminSales = () => {
     try {
       setLoading(true);
 
-      const res = await axios.get(`${API_URL}/order/sales-data`, {
+      const res = await api.get("/api/v1/order/sales-data", {
         headers: authHeaders(),
       });
 

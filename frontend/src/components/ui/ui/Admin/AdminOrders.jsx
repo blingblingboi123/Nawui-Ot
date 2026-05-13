@@ -22,7 +22,7 @@ const AdminOrders = () => {
 
   const updateOrderStatus = async (orderId, status) => {
     try {
-      const res = await axios.put(
+      const res = await api.put(
         `/api/v1/order/update-status/${orderId}`,
         { status },
         { headers: authHeaders() }
