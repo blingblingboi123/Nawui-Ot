@@ -1,5 +1,4 @@
-import axios from "axios";
-import { API_URL } from "@/config/api";
+import api from "@/config/api";
 import React, { useEffect, useMemo, useState } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { Input } from "../Input";
@@ -19,7 +18,7 @@ const AdminUser = () => {
       setLoading(true);
       const token = localStorage.getItem("accessToken");
 
-      const res = await axios.get(`${API_URL}/user/allUser`, {
+      const res = await api.get("/api/v1/user/allUser" , {
         headers: {
           Authorization: `Bearer ${token}`,
         },

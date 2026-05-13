@@ -26,9 +26,7 @@ const AdminSales = () => {
     try {
       setLoading(true);
 
-      const res = await api.get("/api/v1/order/sales-data", {
-        headers: authHeaders(),
-      });
+      const res = await api.get("/api/v1/order/sales-data",authHeaders());
 
       if (res.data.success) {
         setSalesData(res.data.salesData);

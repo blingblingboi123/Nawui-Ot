@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "@/config/api";
-import { API_URL } from "@/config/api";
 import { toast } from "sonner";
 import {
   Mail,
@@ -41,7 +40,7 @@ const UserInfo = () => {
       setLoading(true);
 
       const res = await api.get(
-        `${API_URL}/user/get-User/${id}`,
+        `/api/v1/user/get-user/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -88,7 +87,7 @@ const UserInfo = () => {
       setLoading(true);
 
       const res = await api.put(
-        `${API_URL}/user/update/${id}`,
+        `/api/v1/user/update/${id}`,
         updatedUser,
         {
           headers: {
