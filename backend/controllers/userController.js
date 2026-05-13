@@ -36,11 +36,7 @@ export const register = async (req, res) => {
       expiresIn: "10m",
     });
 
-    try {
-  await verifyEmail(token, email);
-} catch (emailError) {
-  console.log("Email sending failed:", emailError.message);
-}
+    verifyEmail(token, email);
 
     newUser.token = token;
 
