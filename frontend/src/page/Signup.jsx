@@ -13,8 +13,7 @@ import { Label } from "@/components/ui/ui/Label";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import axios from "axios";
-import { API_URL } from "@/config/api";
+import api from "@/config/api";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -43,8 +42,8 @@ const Signup = () => {
   try {
     setLoading(true);
 
-    const res = await axios.post(
-      `${API_URL}/user/register`,
+    const res = await api.post(
+      "/api/v1/user/register",
       formData,
       {
         headers: { "Content-Type": "application/json" },

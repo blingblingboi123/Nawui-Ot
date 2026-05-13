@@ -13,8 +13,7 @@ import { Label } from "@/components/ui/ui/Label";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import axios from "axios";
-import { API_URL } from "@/config/api";
+import api from "@/config/api";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/userSlice";
 import { clearCart, setCart } from "@/redux/cartSlice";
@@ -46,8 +45,8 @@ const Login = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post(
-        `${API_URL}/user/login`,
+      const res = await api.post(
+        "/api/v1/user/login",
         formData,
         {
           headers: {
@@ -69,7 +68,7 @@ const Login = () => {
         dispatch(clearCart());
 
         // fetch this logged-in user's cart
-        const cartRes = await axios.get(`${API_URL}/cart`, {
+        const cartRes = await api.get("/api/v1/cart", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

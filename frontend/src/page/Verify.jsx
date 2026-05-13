@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { API_URL } from "@/config/api";
+import api from "@/config/api";
 import { toast } from "sonner";
 
 const Verify = () => {
@@ -16,8 +15,8 @@ const Verify = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post(
-        `${API_URL}/user/reverify`,
+      const res = await api.post(
+        "/api/v1/user/reverify",
         { email },
         {
           headers: { "Content-Type": "application/json" },
