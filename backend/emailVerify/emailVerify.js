@@ -1,39 +1,42 @@
-import nodemailer from 'nodemailer';
-import 'dotenv/config';
+import nodemailer from "nodemailer";
+import "dotenv/config";
 
-export const verifyEmail = (token,email) => {  
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: process.env.MAIL_USER,
-            pass: process.env.MAIL_PASS,
-        }
-    });
+export const verifyEmail = async (token, email) => {
 
-const mailConfigurations = {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASS,
+    },
+  });
+
+  const verifyLink = `${process.env.FRONTEND_URL}/verify/${token}`;
+
+  const mailConfigurations = {
     from: process.env.MAIL_USER,
     to: email,
-    subject: 'Email Verification',
+    subject: "Email Verification",
 
-    // It should be a string of sender/server email
-    from: 'mrtwinklesharma@gmail.com',
+    html: `
+      <h2>Email Verification</h2>
 
-    to: 'smtwinkle451@gmail.com',
+      <p>Please click the button below to verify your email:</p>
 
-    // Subject of Email
-    subject: 'Email Verification',
-    
-    // This would be the text of email body
-    text: `Hi! There, You have recently visited 
-           our website and entered your email.
-           Please follow the given link to verify your email
-           http://localhost:5173/verify/${token} 
-           Thanks`
+      <a href="${verifyLink}">
+        Verify Email
+      </a>
+    `,
+  };
+
+  transporter.sendMail(mailConfigurations, function (error, info) {
+
+    if (error) {
+      console.log("Email Error:", error);
+      return;
+    }
+
+    console.log("Email Sent Successfully");
+    console.log(info.response);
+  });
 };
-
-transporter.sendMail(mailConfigurations, function(error, info){
-    if (error) throw Error(error);
-    console.log('Email Sent Successfully');
-    console.log(info);
-});
-}
