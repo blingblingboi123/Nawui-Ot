@@ -2,41 +2,43 @@ import nodemailer from "nodemailer";
 import "dotenv/config";
 
 export const verifyEmail = async (token, email) => {
+  try {
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS,
-    },
-  });
+    console.log(process.env.MAIL_USER);
+    console.log(process.env.FRONTEND_URL);
 
-  const verifyLink = `${process.env.FRONTEND_URL}/verify/${token}`;
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS,
+      },
+    });
 
-  const mailConfigurations = {
-    from: process.env.MAIL_USER,
-    to: email,
-    subject: "Email Verification",
+    const verifyLink = `${process.env.FRONTEND_URL}/verify/${token}`;
 
-    html: `
-      <h2>Email Verification</h2>
+    const mailConfigurations = {
+      from: process.env.MAIL_USER,
+      to: email,
+      subject: "Email Verification",
 
-      <p>Please click the button below to verify your email:</p>
+      html: `
+        <h2>Email Verification</h2>
 
-      <a href="${verifyLink}">
-        Verify Email
-      </a>
-    `,
-  };
+        <p>Please click the button below to verify your email:</p>
 
-  transporter.sendMail(mailConfigurations, function (error, info) {
+        <a href="${verifyLink}">
+          Verify Email
+        </a>
+      `,
+    };
 
-    if (error) {
-      console.log("Email Error:", error);
-      return;
-    }
+    const info = await transporter.sendMail(mailConfigurations);
 
     console.log("Email Sent Successfully");
     console.log(info.response);
-  });
+
+  } catch (error) {
+    console.log("Email Error:", error.message);
+  }
 };
